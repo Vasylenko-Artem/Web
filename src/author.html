@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Студент Артемка">
+	<title>Автор проєкту</title>
+	<link rel="stylesheet" href="css/style.css">
+
+	<style>
+		#about b {
+			color: var(--color-accent);
+		}
+
+		#about s {
+			color: crimson;
+		}
+
+		#about>span {
+			color: lightgreen;
+		}
+	</style>
+</head>
+
+
+<body>
+	<div class="wrapper">
+		<!-- Header & Navigation -->
+		<header class="header">
+			<div class="header__conainer">
+				<nav class="nav">
+					<ul class="nav-list">
+						<li class="nav-item active"><a href="author.html">Автор</a></li>
+						<li class="nav-item"><a href="company.html">Компанія</a></li>
+						<li class="nav-item"><a href="news.html">Новини</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<!-- Main content -->
+		<main class="main">
+			<div class="main__container">
+
+				<section id="about-section" class="section">
+					<h1 class="section-title">Про мене</h1>
+					<article class="article">
+						<p id="about" title="Автор" class="article-text">
+							Мене звати <b title="ім'я" id="b1">Артемка</b>, я
+							<s id="s1">не люблю</s>
+							<span title="факт">люблю</span> веб-розробку.
+						</p>
+					</article>
+				</section>
+
+				<section id="study-section" class="section">
+					<h2 class="section-title">Моя спеціальність</h2>
+					<article class="article">
+						<p id="study" title="Навчання">
+							Я навчаюсь на спеціальності "Комп'ютерні науки".
+							Захоплююсь HTML, CSS, JavaScript.
+						</p>
+					</article>
+				</section>
+
+				<section id="hobby-section" class="section">
+					<h2 class="section-title">Додаткова інформація</h2>
+					<article class="article">
+						<p id="hobby" title="Хобі">
+							У вільний час читаю книги та займаюсь спортом.
+						</p>
+					</article>
+				</section>
+
+			</div>
+		</main>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer__container">
+				<hr class="divider">
+				<p class="footer-text">© 2025 SmokeLife</p>
+			</div>
+		</footer>
+	</div>
+
+</body>
+
+</html>
