@@ -11,8 +11,33 @@
 	/* border: #f5f5f5 solid 1px; */
 }
 
-ul,
+/* ul,
 ol {
+	list-style: none;
+} */
+
+ul {
+	padding-left: 40px;
+	/* margin-top: 1em; */
+	/* margin-bottom: 1em; */
+}
+
+ol {
+	padding-left: 40px;
+	/* margin-top: 1em; */
+	/* margin-bottom: 1em; */
+}
+
+/* dl {
+	margin-top: 1em;
+	margin-bottom: 1em;
+} */
+
+dd {
+	margin-left: 40px;
+}
+
+.nav-list {
 	list-style: none;
 }
 
@@ -232,4 +257,14 @@ article {
 .article p::after {
 	content: ' +';
 	color: var(--color-accent);
+}
+
+.section.marquee-section {
+	color: var(--color-accent);
+	font-size: 1.5rem;
+	font-weight: 600;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
