@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Сторінка введення інформації</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<!-- Header & Navigation -->
+		<header class="header">
+			<div class="header__conainer">
+				<nav class="nav">
+					<ul class="nav-list">
+						<li class="nav-item"><a href="author.html">Автор</a></li>
+						<li class="nav-item"><a href="company.html">Компанія</a></li>
+						<li class="nav-item"><a href="news.html">Новини</a></li>
+						<li class="nav-item active"><a href="user.html">Введення інформації</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<!-- Main content -->
+		<main class="main">
+			<div class="main__container">
+				<section class="section">
+					<h2 class="section-title">Форма введення інформації</h2>
+					<form action="#">
+						<fieldset>
+							<legend>Особисті дані</legend>
+							<label for="name">Ім'я:</label>
+							<input type="text" id="name" name="name" maxlength="50">
+
+							<label for="tel">Телефон:</label>
+							<input type="tel" id="tel" name="tel" placeholder="+380..." pattern="[+]{1}[0-9]{12}">
+
+							<label for="password">Пароль:</label>
+							<input type="password" id="password" name="password" maxlength="20">
+
+							<label>Стать:</label>
+							<div class="gender-options">
+								<input type="radio" id="male" name="gender" value="male">
+								<label for="male">Чоловік</label>
+
+								<input type="radio" id="female" name="gender" value="female">
+								<label for="female">Жінка</label>
+							</div>
+
+							<input type="hidden" name="user_id" value="12345">
+						</fieldset>
+
+						<fieldset class="section">
+							<legend>Додаткова інформація</legend>
+
+							<label for="about">Про себе:</label>
+							<textarea id="about" class="auto-resize" placeholder="Напишіть щось..."></textarea>
+
+							<label for="file">Обрати файл:</label>
+							<input type="file" id="file" name="file" multiple>
+						</fieldset>
+
+						<fieldset class="section">
+							<legend>Вибір опцій</legend>
+
+							<label for="city">Місто:</label>
+							<select id="city" name="city" required>
+								<optgroup label="Україна">
+									<option value="kyiv">Київ</option>
+									<option value="lviv">Львів</option>
+								</optgroup>
+								<optgroup label="Інші країни">
+									<option value="warsaw">Варшава</option>
+									<option value="paris">Париж</option>
+								</optgroup>
+							</select>
+
+							<label for="languages">Мови:</label>
+							<datalist id="languages">
+								<option value="Українська"></option>
+								<option value="Англійська"></option>
+								<option value="Французька"></option>
+							</datalist>
+							<input list="languages" name="language">
+						</fieldset>
+
+						<fieldset class="section">
+							<legend>Прогрес і вимірювання</legend>
+
+							<label for="progress">Прогрес завдання:</label>
+							<progress id="progress" value="70" max="100"></progress>
+
+							<label for="meter">Якість роботи:</label>
+							<meter id="meter" value="0.7" min="0" max="1" high="0.9"></meter>
+						</fieldset>
+
+						<div class="form-buttons">
+							<button type="submit">Відправити</button>
+							<button type="reset">Очистити</button>
+						</div>
+					</form>
+				</section>
+			</div>
+		</main>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer__container">
+				<hr class="divider">
+				<p class="footer-text">© 2025 SmokeLife</p>
+			</div>
+		</footer>
+	</div>
+</body>
+
+<script>
+	document.querySelectorAll('.auto-resize').forEach(el => {
+		el.addEventListener('input', () => {
+			el.style.height = 'auto'
+			el.style.height = el.scrollHeight + 'px'
+		})
+	});
+</script>
+
+</html>
