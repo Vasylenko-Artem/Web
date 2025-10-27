@@ -103,6 +103,40 @@
 						</div>
 					</form>
 				</section>
+
+				<!-- 
+					Привіт, друзі! Сьогодні ми тестуємо регулярні вирази.  
+					Слова: ровер, риби, стіл, книга, причал, річ.  
+					Числа: 123, 4567, 89, 0.  
+					Цифри окремо: 1 2 3 4 5.  
+					Декілька слів, які починаються з букви і закінчуються на р або и: ровер, риби, причал, річ.
+				-->
+
+				<section class="section">
+					<h2 class="section-title">Форма введення інформацією</h2>
+					<form id="textForm" action="# ">
+						<textarea id="inputText" class="auto-resize" placeholder="Введіть текст тут..."></textarea>
+						<br>
+						<button type="button" id="searchBtn">Пошук інформації</button>
+					</form>
+
+					<div class="results" id="results" style="white-space: pre-wrap;"></div>
+				</section>
+
+				<section class="section">
+					<h2 class="section-title">Array Task</h2>
+					<form id="arrayForm" action="#">
+						<label for="arraySize">Розмір масиву (N):</label>
+						<input type="number" id="arraySize" name="arraySize" min="1" placeholder="Введіть розмір масиву"
+							required>
+						<br><br>
+						<button type="button" id="arrayTaskBtn">Створити масив</button>
+						<br><br>
+						<textarea id="arrayOutput" rows="5" cols="50" readonly
+							placeholder="Результат зʼявиться тут..."></textarea>
+					</form>
+				</section>
+
 			</div>
 		</main>
 
@@ -114,15 +148,8 @@
 			</div>
 		</footer>
 	</div>
-</body>
 
-<script>
-	document.querySelectorAll('.auto-resize').forEach(el => {
-		el.addEventListener('input', () => {
-			el.style.height = 'auto'
-			el.style.height = el.scrollHeight + 'px'
-		})
-	});
-</script>
+	<script src="js/script.js"></script>
+</body>
 
 </html>

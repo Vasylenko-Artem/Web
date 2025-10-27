@@ -20,10 +20,22 @@
 			color: lightgreen;
 		}
 	</style>
+
+	<script>
+		// Task1
+		const pageLoaded = () => {
+			console.log('Page loaded.')
+		}
+
+		const pageResized = () => {
+			console.log('Page resized.')
+		}
+	</script>
+
 </head>
 
 
-<body>
+<body onload="pageLoaded()" onresize="pageResized()">
 	<div class="wrapper">
 		<!-- Header & Navigation -->
 		<header class="header">
@@ -73,6 +85,10 @@
 					</article>
 				</section>
 
+				<section id="study-section" class="section">
+					<h2 class="section-title">Info</h2>
+					<button id="runTask">runTask</button>
+				</section>
 			</div>
 		</main>
 
@@ -84,6 +100,8 @@
 			</div>
 		</footer>
 	</div>
+
+	<script src="js/script.js"></script>
 
 </body>
 

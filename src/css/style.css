@@ -221,6 +221,18 @@ body {
 	font-weight: 600;
 	margin-bottom: 10px;
 	color: var(--color-accent);
+
+	cursor: pointer;
+	transition: 0.15s ease;
+
+	&.mousemove {
+		color: var(--color-text);
+	}
+
+	&.hidden {
+		opacity: 0;
+		pointer-events: none;
+	}
 }
 
 article {
