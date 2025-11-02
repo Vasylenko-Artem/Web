@@ -120,13 +120,13 @@
 								<text x="-0.4" y="-1.7">2</text>
 							</g>
 
-							<text font-size="0.4" fill="#0ff">
-								<textPath href="#curve" startOffset="50%" text-anchor="middle">
-									SVG Текст
-								</textPath>
-							</text>
-
 						</svg>
+					</div>
+				</section>
+
+				<section class="section">
+					<div class="canvas-container">
+						<canvas id="canvas" width="660" height="660"></canvas>
 					</div>
 				</section>
 			</div>
@@ -140,6 +140,152 @@
 			</div>
 		</footer>
 	</div>
+
+	<script>
+		const canvas = document.getElementById('canvas')
+		const ctx = canvas.getContext('2d')
+
+		const width = canvas.width
+		const height = canvas.height
+		const scale = 66
+
+		function toCanvasX(svgX) {
+			return (svgX + 3) * scale
+		}
+
+		function toCanvasY(svgY) {
+			return height / 2 - svgY * scale
+		}
+
+		function drawArrow(x1, y1, x2, y2) {
+			const headLength = 8
+			const angle = Math.atan2(y2 - y1, x2 - x1)
+
+			ctx.beginPath()
+			ctx.moveTo(x1, y1)
+			ctx.lineTo(x2, y2)
+			ctx.stroke()
+
+			ctx.beginPath()
+			ctx.moveTo(x2, y2)
+			ctx.lineTo(x2 - headLength * Math.cos(angle - Math.PI / 6), y2 - headLength * Math.sin(angle - Math.PI / 6))
+			ctx.lineTo(x2 - headLength * Math.cos(angle + Math.PI / 6), y2 - headLength * Math.sin(angle + Math.PI / 6))
+			ctx.closePath()
+			ctx.fillStyle = '#fff'
+			ctx.fill()
+		}
+
+		let time = 0
+
+		function animate() {
+			ctx.clearRect(0, 0, width, height)
+
+			// Coordinate axes
+			ctx.strokeStyle = '#fff'
+			ctx.lineWidth = 1.5
+
+			// X axis
+			drawArrow(toCanvasX(-4), toCanvasY(0), toCanvasX(6), toCanvasY(0))
+			ctx.fillStyle = '#fff'
+			ctx.font = '20px Arial'
+			ctx.fillText('X', toCanvasX(6), toCanvasY(0) + 20)
+
+			// Y axis
+			drawArrow(toCanvasX(0), toCanvasY(-3), toCanvasX(0), toCanvasY(3))
+			ctx.fillText('Y', toCanvasX(0) + 10, toCanvasY(3) + 10)
+
+			// Signatures on axes
+			ctx.font = '16px Arial'
+			ctx.fillText('-2', toCanvasX(-2) - 20, toCanvasY(0) + 20)
+			ctx.fillText('1', toCanvasX(1) - 10, toCanvasY(0) + 20)
+			ctx.fillText('5', toCanvasX(5) + 5, toCanvasY(0) + 20)
+			ctx.fillText('0', toCanvasX(0) - 20, toCanvasY(0) + 20)
+			ctx.fillText('-1', toCanvasX(0) - 25, toCanvasY(-1) + 5)
+			ctx.fillText('-2', toCanvasX(0) - 25, toCanvasY(-2) + 5)
+			ctx.fillText('1', toCanvasX(0) - 20, toCanvasY(1) + 5)
+			ctx.fillText('2', toCanvasX(0) - 20, toCanvasY(2) + 5)
+
+			// Animation for changing color
+			const colorPhase = (Math.sin(time * 2 * Math.PI / 3) + 1) / 2
+			const r = Math.floor(255 * (1 - colorPhase) + 0 * colorPhase)
+			const g = Math.floor(107 * (1 - colorPhase) + 255 * colorPhase)
+			const b = Math.floor(0 * (1 - colorPhase) + 0 * colorPhase)
+
+			ctx.strokeStyle = '#333'
+			ctx.lineWidth = 3
+
+			// Rect 1: Color change
+			ctx.fillStyle = `rgb(${r}, ${g}, ${b})`
+			ctx.fillRect(toCanvasX(-2), toCanvasY(2), scale, scale)
+			ctx.strokeRect(toCanvasX(-2), toCanvasY(2), scale, scale)
+
+			// Rect 2: up-down movement
+			const translateY = Math.sin(time * 2 * Math.PI / 3) * scale
+			ctx.fillStyle = '#ff6b00'
+			ctx.fillRect(toCanvasX(0), toCanvasY(2) - translateY, scale * 2, scale)
+			ctx.strokeRect(toCanvasX(0), toCanvasY(2) - translateY, scale * 2, scale)
+
+			// Rect 3: rotation
+			ctx.save()
+			const centerX = toCanvasX(4.5)
+			const centerY = toCanvasY(1.5)
+			ctx.translate(centerX, centerY)
+			ctx.rotate(-(time * 2 * Math.PI / 4))
+			ctx.translate(-centerX, -centerY)
+			ctx.fillStyle = '#ff6b00'
+			ctx.fillRect(toCanvasX(4), toCanvasY(2), scale, scale)
+			ctx.strokeRect(toCanvasX(4), toCanvasY(2), scale, scale)
+			ctx.restore()
+
+			// Rect 4: Scaling
+			const scaleValue = 1 + 0.2 * Math.sin(time * 2 * Math.PI / 3)
+			const rectSize = scale * scaleValue
+			const offsetX = (scale - rectSize) / 2
+			const offsetY = (scale - rectSize) / 2
+			ctx.fillStyle = '#ff6b00'
+			ctx.fillRect(toCanvasX(1) - offsetX, toCanvasY(-1) - offsetY, rectSize, rectSize)
+			ctx.strokeRect(toCanvasX(1) - offsetX, toCanvasY(-1) - offsetY, rectSize, rectSize)
+
+			// Rect 5: skew
+			ctx.save()
+			const skewAngle = (5 * Math.sin(time * 2 * Math.PI / 2)) * Math.PI / 180
+			ctx.transform(1, 0, Math.tan(skewAngle), 1, 0, 0)
+			ctx.fillStyle = '#ff6b00'
+			ctx.fillRect(toCanvasX(4), toCanvasY(-1), scale, scale)
+			ctx.strokeRect(toCanvasX(4), toCanvasY(-1), scale, scale)
+			ctx.restore()
+
+			// Static rect
+			ctx.fillStyle = '#ff6b00'
+			ctx.fillRect(toCanvasX(-2), toCanvasY(0), scale, scale)
+			ctx.strokeRect(toCanvasX(-2), toCanvasY(0), scale, scale)
+
+			ctx.fillRect(toCanvasX(-3), toCanvasY(-1), scale, scale)
+			ctx.strokeRect(toCanvasX(-3), toCanvasY(-1), scale, scale)
+
+			// Circles
+			ctx.beginPath()
+			ctx.arc(toCanvasX(-2), toCanvasY(1), scale, 0, 2 * Math.PI)
+			ctx.fill()
+			ctx.stroke()
+
+			ctx.beginPath()
+			ctx.arc(toCanvasX(3), toCanvasY(0), scale * 2, 0, 2 * Math.PI)
+			ctx.fill()
+			ctx.stroke()
+
+			// Ellipse
+			ctx.beginPath()
+			ctx.ellipse(toCanvasX(-1), toCanvasY(-1.5), scale, scale * 0.5, 0, 0, 2 * Math.PI)
+			ctx.fill()
+			ctx.stroke()
+
+			time += 1 / 60
+			requestAnimationFrame(animate)
+		}
+
+		animate()
+	</script>
 
 	<script src="js/script.js"></script>
 

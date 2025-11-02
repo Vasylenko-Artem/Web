@@ -528,7 +528,7 @@ input[type='file']::file-selector-button:hover {
 	background: darkorange;
 }
 
-/* */
+/* svg */
 
 .svg-container {
 	display: flex;
@@ -549,4 +549,20 @@ svg {
 		font-family: var(--font-main);
 		fill: #fff;
 	}
+}
+
+/* canvas */
+
+.canvas-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #111;
+}
+
+canvas {
+	width: 100%;
+	max-width: 660px;
+	height: 100%;
+	display: block;
 }
